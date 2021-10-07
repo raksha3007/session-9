@@ -1,0 +1,15 @@
+*{
+    margin:20px;
+    padding:20px;
+    
+    box-sizing:border-box;
+  }
+  
+.button {
+    padding:15px 20px;
+    background:rgba(0, 128, 90, 0.884);
+    color:maroon
+    
+   
+  }
+  

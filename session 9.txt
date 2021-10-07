@@ -1,0 +1,88 @@
+1.Controlled components are mainly those where any prop value of the component is either from the parent component or from the store. 
+Example:
+<ControlledComp value={this.props.fromParent}/>
+
+In case of an uncontrolled component, the component value can be taken from the state of the component depending on the event handling. 
+Example:
+<UncontrolledComp value={this.state.independentValue
+
+ In most cases, we recommend using controlled components to implement forms. In a controlled component, form data is handled by a React component. 
+ The alternative is uncontrolled components, where form data is handled by the DOM itself.
+ 
+ 
+ 2.Side effects are basically anything that affects something outside of the scope of the current function that's being executed.
+ function Greet({ name }) {
+  const message = `Hello, ${name}!`; // Calculates output
+  // Bad!
+  document.title = `Greetings to ${name}`; // Side-effect!
+  return <div>{message}</div>;       // Calculates output
+}
+
+
+
+
+
+
+
+4. By using this Hook, you tell React that your component needs to do something after render.
+    4 possible ways to call useeffect:
+
+1] when component mounts
+2]on every component render
+3]on every component render with a condition
+4]when component unmounts
+
+When Component Mounts
+Usually, you would like to use it for fetching data or adding event listeners.
+To run the function once, add an empty dependency list. If there are no dependencies in it, that means it will stay the same all the time, and will not call the function again.
+function MyComponent() {
+    
+    React.useEffect(() => {
+        callMeOnlyOnce()
+    }, [])
+    
+}
+
+On Every Component Render:
+To call the function on each component render, skip adding the dependency list. No list, nothing to compare against, that means run the effect every time.
+function MyComponent() {
+    
+    React.useEffect(() => {
+        runThisFunctionOnEveryRender();
+    })
+    
+}
+
+
+
+
+On Every Component Render with a Condition:
+To call a function conditionally, specify the list of dependencies.
+And the rule of thumb is to always add those dependencies that you are using inside the useEffect().
+function MyComponent() {
+    
+    React.useEffect(() => {
+        runIfOneOfTheDepsWillChange(dep1, dep2);
+    }, [dep1, dep2])
+    
+}
+
+
+When Component Unmounts:
+To clean up (remove event listeners or stop data fetching with a side effect) after the component unmounts, a return statement with a function should be added inside the useEffect() hook.
+function MyComponent() {
+    
+    React.useEffect(() => {
+        document.addEventListener();
+
+        return () => {
+            document.removeEventListener();
+        }
+    }, [])
+    
+
+
+
+3.  state is passed to the view and to child components
+actions are triggered by the view is unidirections in react.
+The view is a result of the application state. State can only change when actions happen. When actions happen, the state is updated.
